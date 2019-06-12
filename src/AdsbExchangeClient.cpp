@@ -25,7 +25,13 @@ void AdsbExchangeClient::updateVisibleAircraft(String searchQuery) {
   Serial.println(url);
 
   // This will send the request to the server
-  client.print(String("GET ") + url + " HTTP/1.1\r\n" +
+  // Send header api-auth with value of key
+  // https://github.com/esp8266/Arduino/issues/1390
+  // Probably completely incorrect
+  // TODO: move key to const
+
+  client.print("API-AUTH:<insert_key>\r\n");
+  client.print(String("POST ") + url + " HTTP/1.1\r\n" +
                "Host: " + host + "\r\n" +
                "Connection: close\r\n\r\n");
 
