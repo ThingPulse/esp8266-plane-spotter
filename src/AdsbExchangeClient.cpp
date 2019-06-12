@@ -136,24 +136,68 @@ void AdsbExchangeClient::value(String value) {
  "OpIcao": "SWR",
  "Dst": 6.23,
  "Year": "1996"
+ 
+ NEW FORMAT
+ 
+{
+	"ac": [{
+		"postime": "1560310861818",
+		"icao": "7C4929",
+		"reg": "VH-OQJ",
+		"type": "A388",
+		"wtc": "3",
+		"spdtyp": "",
+		"spd": "502",
+		"altt": "0",
+		"alt": "39000",
+		"galt": "39000",
+		"talt": "",
+		"lat": "",
+		"lon": "",
+		"vsit": "0",
+		"vsi": "0",
+		"trkh": "0",
+		"ttrk": "",
+		"trak": "112.8",
+		"sqk": "",
+		"call": "QFA2",
+		"gnd": "0",
+		"trt": "2",
+		"pos": "0",
+		"mlat": "0",
+		"tisb": "0",
+		"sat": "0",
+		"opicao": "QFA",
+		"cou": "Australia",
+		"mil": "0",
+		"interested": "0",
+		"from": "EGLL London Heathrow, United Kingdom",
+		"to": "YSSY Sydney Kingsford Smith, Australia"
+	}],
+	"msg": "No error",
+	"total": 1,
+	"ctime": 1560310862832,
+	"ptime": 1014
+}
+
  */
-  if (currentKey == "Id") {
+  if (currentKey == "postime") {
     counter++;
-  } else if (currentKey == "From") {
+  } else if (currentKey == "from") {
     from[TEMP] = value;
-  } else if (currentKey == "To") {
+  } else if (currentKey == "to") {
     to[TEMP] = value;
-  } else if (currentKey == "OpIcao") {
+  } else if (currentKey == "opicao") {
     operatorCode[TEMP] = value;
-  } else if (currentKey == "Dst") {
+  } else if (currentKey == "dst") {
     distance[TEMP] = value.toFloat();
-  } else if (currentKey == "Mdl") {
+  } else if (currentKey == "mdl") {
     aircraftType[TEMP] = value;
-  } else if (currentKey == "Trak") {
+  } else if (currentKey == "trak") {
     heading[TEMP] = value.toFloat();
-  } else if (currentKey == "Alt") {
+  } else if (currentKey == "alt") {
     altitude[TEMP] = value;
-  } else if (currentKey == "Trt") {
+  } else if (currentKey == "trt") {
     if (distance[TEMP] < currentMinDistance) {
       currentMinDistance = distance[TEMP];
       Serial.println("Found a closer aircraft");
